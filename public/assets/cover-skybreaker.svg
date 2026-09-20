@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="SKYBREAKER cover art">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#070a1e"/>
+      <stop offset="0.55" stop-color="#2a0f45"/>
+      <stop offset="0.93" stop-color="#b81e6f"/>
+      <stop offset="1" stop-color="#ff2e88"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="0.55" stop-color="#ff9e5e"/>
+      <stop offset="1" stop-color="#ff3d9a"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2ee6ff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ff3d9a" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.45" r="0.8">
+      <stop offset="0" stop-color="#020308" stop-opacity="0"/>
+      <stop offset="1" stop-color="#020308" stop-opacity="0.8"/>
+    </radialGradient>
+    <clipPath id="horizonClip"><rect x="0" y="0" width="640" height="240"/></clipPath>
+    <clipPath id="sunDisc"><circle cx="320" cy="190" r="105"/></clipPath>
+    <filter id="b4" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="b9" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+
+  <rect width="640" height="400" fill="url(#sky)"/>
+
+  <!-- stars -->
+  <g fill="#e9efff">
+    <circle cx="60" cy="40" r="1.6" opacity="0.9"/><circle cx="150" cy="88" r="1.2" opacity="0.6"/>
+    <circle cx="230" cy="34" r="1.4" opacity="0.8"/><circle cx="300" cy="70" r="1.1" opacity="0.5"/>
+    <circle cx="402" cy="30" r="1.5" opacity="0.85"/><circle cx="472" cy="72" r="1.2" opacity="0.55"/>
+    <circle cx="548" cy="42" r="1.7" opacity="0.9"/><circle cx="600" cy="96" r="1.2" opacity="0.6"/>
+    <circle cx="120" cy="150" r="1.3" opacity="0.5"/><circle cx="250" cy="128" r="1.1" opacity="0.45"/>
+    <circle cx="392" cy="140" r="1.3" opacity="0.5"/><circle cx="588" cy="160" r="1.4" opacity="0.6"/>
+    <circle cx="510" cy="118" r="1.1" opacity="0.4"/><circle cx="32" cy="110" r="1.2" opacity="0.45"/>
+  </g>
+
+  <!-- ringed planet -->
+  <circle cx="95" cy="85" r="42" fill="#12082a" stroke="#2ee6ff" stroke-width="2" opacity="0.9"/>
+  <circle cx="80" cy="74" r="9" fill="#1d0f3d" opacity="0.9"/>
+  <ellipse cx="95" cy="85" rx="68" ry="15" transform="rotate(-16 95 85)" fill="none" stroke="#ff3d9a" stroke-width="2.5" opacity="0.7"/>
+
+  <!-- sun with slits -->
+  <g clip-path="url(#horizonClip)">
+    <g clip-path="url(#sunDisc)">
+      <circle cx="320" cy="190" r="105" fill="url(#sun)"/>
+      <g fill="#1b0836">
+        <rect x="200" y="178" width="240" height="5"/>
+        <rect x="200" y="194" width="240" height="7"/>
+        <rect x="200" y="212" width="240" height="9"/>
+        <rect x="200" y="232" width="240" height="12"/>
+      </g>
+    </g>
+    <circle cx="320" cy="190" r="112" fill="none" stroke="#ff3d9a" stroke-width="10" opacity="0.25" filter="url(#b9)"/>
+  </g>
+
+  <!-- mountain band + horizon -->
+  <path d="M0 240 L70 210 L130 230 L200 202 L270 236 L340 214 L420 238 L520 216 L640 240 Z" fill="#0a0616"/>
+  <rect x="0" y="238" width="640" height="5" fill="#ff3d9a" opacity="0.85"/>
+  <rect x="0" y="232" width="640" height="16" fill="#ff3d9a" opacity="0.28" filter="url(#b4)"/>
+
+  <!-- grid floor -->
+  <g stroke="#2ee6ff" stroke-width="1.4" opacity="0.4">
+    <path d="M-40 400 L320 241 M40 400 L320 241 M120 400 L320 241 M200 400 L320 241 M280 400 L320 241 M360 400 L320 241 M440 400 L320 241 M520 400 L320 241 M600 400 L320 241 M680 400 L320 241"/>
+    <path d="M0 246 H640 M0 252 H640 M0 260 H640 M0 270 H640 M0 283 H640 M0 300 H640 M0 321 H640 M0 347 H640 M0 378 H640" opacity="0.8"/>
+  </g>
+
+  <!-- debris -->
+  <path d="M150 300 L166 292 L178 302 L172 318 L154 316 Z" fill="#241033" stroke="#ff3d9a" stroke-width="2"/>
+  <path d="M556 262 L568 256 L577 264 L572 275 L559 273 Z" fill="#241033" stroke="#ff3d9a" stroke-width="2" opacity="0.9"/>
+  <path d="M528 330 L540 326 L548 334 L542 343 L530 341 Z" fill="#241033" stroke="#ff7ac0" stroke-width="2" opacity="0.8"/>
+
+  <!-- ship -->
+  <g>
+    <polygon points="450,96 415,158 432,142 450,152 468,142 485,158" fill="#0d2a3f" stroke="#2ee6ff" stroke-width="2.5" stroke-linejoin="round"/>
+    <polygon points="450,108 457,124 443,124" fill="#bff6ff" opacity="0.95"/>
+    <rect x="424" y="146" width="12" height="3" fill="#ff3d9a"/>
+    <rect x="464" y="146" width="12" height="3" fill="#ff3d9a"/>
+    <polygon points="441,156 459,156 450,204" fill="url(#flame)" filter="url(#b4)"/>
+  </g>
+
+  <rect width="640" height="400" fill="url(#vig)"/>
+</svg>

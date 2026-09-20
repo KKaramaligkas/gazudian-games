@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gazudian Games — Independent Game Studio</title>
+<meta name="description" content="Gazudian Games is an independent studio building neon-drenched action games and worlds that fight back. Play our first demo, SKYBREAKER, right in your browser — no download required.">
+<meta name="theme-color" content="#04050c">
+<meta property="og:title" content="Gazudian Games — Independent Game Studio">
+<meta property="og:description" content="Worlds worth losing sleep over. Play the SKYBREAKER demo in your browser — free, no download.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/logo.svg">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="booting">
+
+<!-- ============ shared logo mark ============ -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <linearGradient id="gzm-line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ee6ff"/>
+      <stop offset="1" stop-color="#ff3d9a"/>
+    </linearGradient>
+    <linearGradient id="gzm-line-v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2ee6ff"/>
+      <stop offset="1" stop-color="#ff3d9a"/>
+    </linearGradient>
+  </defs>
+  <symbol id="gz-mark" viewBox="0 0 128 128">
+    <path d="M64 6 L114.2 35 L114.2 93 L64 122 L13.8 93 L13.8 35 Z"
+          fill="rgba(6,9,20,.92)" stroke="url(#gzm-line)" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M81.4 43.3 A27 27 0 1 0 81.4 84.7 L81.4 64 L64 64"
+          fill="none" stroke="#e9efff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ============ FX overlays ============ -->
+<div class="fx-scanlines" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+
+<!-- ============ BOOT / TITLE SCREEN ============ -->
+<div id="boot" class="boot" role="dialog" aria-label="Loading Gazudian Games">
+  <div class="boot__inner">
+    <svg class="boot__mark mark-glow" viewBox="0 0 128 128" aria-hidden="true"><use href="#gz-mark"/></svg>
+    <p class="boot__brand">GAZUDIAN <span>GAMES</span></p>
+    <div class="boot__bar"><i id="bootFill"></i></div>
+    <p class="boot__line" id="bootLine">LOADING CARTRIDGE&hellip;</p>
+    <button class="boot__start" id="bootStart" hidden>PRESS START</button>
+    <p class="boot__hint" id="bootHint">SOUND ON &middot; CLICK ANYWHERE</p>
+  </div>
+</div>
+
+<div id="page">
+
+  <!-- ============ FIXED HEADER : XP BAR + NAV ============ -->
+  <div class="site-head">
+    <div class="xpbar" title="Scroll to gain XP">
+      <span class="xpbar__lvl" id="xpLevel">LVL&nbsp;1</span>
+      <span class="xpbar__track"><i id="xpFill"></i></span>
+      <span class="xpbar__title" id="xpTitle">ROOKIE</span>
+    </div>
+    <header class="nav" id="nav">
+      <a class="nav__brand" href="#top" aria-label="Gazudian Games — home">
+        <svg class="nav__mark mark-glow" viewBox="0 0 128 128" aria-hidden="true"><use href="#gz-mark"/></svg>
+        <span class="nav__word">GAZUDIAN<em>GAMES</em></span>
+      </a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#worlds">WORLDS</a>
+        <a href="#arcade">ARCADE</a>
+        <a href="#guild">GUILD</a>
+        <a href="#join">JOIN</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="btn btn--ghost btn--sm sound-btn" id="soundToggle" aria-pressed="true" title="Toggle sound">SOUND</button>
+        <button class="btn btn--primary btn--sm js-play-demo">&#9654; PLAY</button>
+      </div>
+    </header>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO / ATTRACT MODE ============ -->
+    <section class="hero" id="hero">
+      <canvas id="heroStars" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="hud hud--tl" aria-hidden="true"><span>1UP</span>SCORE <b id="hudScore">0000000</b></div>
+      <div class="hud hud--tr" aria-hidden="true"><span>HI-SCORE</span><b id="hudHi">0000000</b></div>
+      <div class="hud hud--bl" aria-hidden="true"><span>WORLD 1-1</span>GAZUDIAN GAMES</div>
+      <div class="hud hud--br" aria-hidden="true"><span>CREDIT</span><b>1</b></div>
+
+      <div class="hero__content">
+        <p class="hero__kicker">&#9733; EST. 2026 &middot; INDEPENDENT GAME STUDIO &#9733;</p>
+        <svg class="hero__mark mark-glow" viewBox="0 0 128 128" aria-hidden="true"><use href="#gz-mark"/></svg>
+        <h1 class="hero__brand">GAZUDIAN<span>GAMES</span></h1>
+        <p class="hero__tagline">WE BUILD WORLDS WORTH LOSING SLEEP OVER.</p>
+        <p class="hero__sub">An independent studio forging neon-drenched action games, deep systems, and worlds that fight back. Our first cartridge is already in the slot &mdash; and it's playable right here.</p>
+        <div class="hero__cta">
+          <button class="btn btn--primary js-play-demo">&#9654;&nbsp; PLAY THE DEMO</button>
+          <a class="btn btn--ghost" href="#worlds">OUR WORLDS &darr;</a>
+        </div>
+        <p class="hero__insert">INSERT COIN <span class="blink">&#9660;</span></p>
+      </div>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span class="ticker__group">
+          <b>&#9733;</b> SKYBREAKER DEMO &mdash; PLAYABLE NOW<b>&#9733;</b> NOW RECRUITING GAME-DEV HEROES
+          <b>&#9733;</b> EMBERFALL &mdash; IN DEVELOPMENT<b>&#9733;</b> NEON DRIFT &mdash; IN THE LAB
+          <b>&#9733;</b> NO DOWNLOADS. NO LOGINS. JUST PLAY.<b>&#9733;</b> INSERT COIN
+        </span>
+        <span class="ticker__group">
+          <b>&#9733;</b> SKYBREAKER DEMO &mdash; PLAYABLE NOW<b>&#9733;</b> NOW RECRUITING GAME-DEV HEROES
+          <b>&#9733;</b> EMBERFALL &mdash; IN DEVELOPMENT<b>&#9733;</b> NEON DRIFT &mdash; IN THE LAB
+          <b>&#9733;</b> NO DOWNLOADS. NO LOGINS. JUST PLAY.<b>&#9733;</b> INSERT COIN
+        </span>
+      </div>
+    </div>
+
+    <!-- ============ WORLDS ============ -->
+    <section class="section worlds" id="worlds">
+      <header class="sec-head reveal">
+        <p class="kicker">THE SHELF</p>
+        <h2 class="sec-title">OUR WORLDS</h2>
+        <p class="sec-sub">Three cartridges in the slot. One of them is playable right now, right here.</p>
+      </header>
+
+      <article class="world world--featured reveal">
+        <div class="world__art" data-tilt>
+          <img src="/assets/cover-skybreaker.svg" alt="SKYBREAKER cover art — a neon ship diving through a synthwave sky" width="640" height="400">
+          <span class="world__badge world__badge--live">&#9679; DEMO LIVE</span>
+        </div>
+        <div class="world__info">
+          <p class="world__meta">VERTICAL SHOOTER &middot; WEB <span class="chip chip--live">PLAYABLE IN-BROWSER</span></p>
+          <h3 class="world__title">SKYBREAKER</h3>
+          <p class="world__copy">Carve through the neon belt, dodge the debris storms, and break the sky. Built to be picked up in five seconds and sworn at for five hours.</p>
+          <ul class="world__specs">
+            <li><span>STATUS</span><b>Demo build 0.9.1 &mdash; free</b></li>
+            <li><span>RUNS ON</span><b>Anything with a browser</b></li>
+            <li><span>DIFFICULTY</span><b>Fair. Mostly.</b></li>
+          </ul>
+          <div class="world__actions">
+            <button class="btn btn--primary js-play-demo">&#9654;&nbsp; PLAY SKYBREAKER</button>
+            <span class="world__hint">No download &middot; No login &middot; 60 seconds to first high score</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="worlds__row">
+        <article class="world world--small reveal">
+          <div class="world__art" data-tilt>
+            <img src="/assets/cover-emberfall.svg" alt="EMBERFALL cover art — a blade burning beneath a crimson moon" width="640" height="400" loading="lazy">
+            <span class="world__badge">&#9888; IN DEVELOPMENT</span>
+          </div>
+          <div class="world__info">
+            <p class="world__meta">ACTION RPG &middot; 2027</p>
+            <h3 class="world__title">EMBERFALL</h3>
+            <p class="world__copy">A dying kingdom. A sword that remembers everything it has burned. Grim combat, deep systems, zero mercy for your backlog.</p>
+            <ul class="world__specs">
+              <li><span>STATUS</span><b>In development</b></li>
+              <li><span>ETA</span><b>2027</b></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="world world--small reveal">
+          <div class="world__art" data-tilt>
+            <img src="/assets/cover-neondrift.svg" alt="NEON DRIFT cover art — a car streaking through a neon city grid" width="640" height="400" loading="lazy">
+            <span class="world__badge">&#9873; IN THE LAB</span>
+          </div>
+          <div class="world__info">
+            <p class="world__meta">ARCADE RACER &middot; TBA</p>
+            <h3 class="world__title">NEON DRIFT</h3>
+            <p class="world__copy">Tear through a city that never sleeps. Every corner is a gamble, every straight is a lie. Prototype phase — throttle down.</p>
+            <ul class="world__specs">
+              <li><span>STATUS</span><b>Prototype</b></li>
+              <li><span>ETA</span><b>When it's fast enough</b></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ ARCADE : PLAYABLE DEMO ============ -->
+    <section class="section arcade" id="arcade">
+      <header class="sec-head reveal">
+        <p class="kicker">INSERT COIN</p>
+        <h2 class="sec-title">PLAY SKYBREAKER</h2>
+        <p class="sec-sub">Demo build 0.9.1 &mdash; runs right here in your browser. Mouse or arrow keys to fly. Your guns are automatic. Your reflexes are not.</p>
+      </header>
+
+      <div class="cabinet reveal">
+        <div class="cabinet__hud" aria-live="polite">
+          <div class="hudcell"><span class="hudcell__label">SCORE</span><b class="hudcell__val" id="gScore">000000</b></div>
+          <div class="hudcell"><span class="hudcell__label">WAVE</span><b class="hudcell__val" id="gWave">1</b></div>
+          <div class="hudcell"><span class="hudcell__label">LIVES</span><b class="hudcell__val hudcell__val--lives" id="gLives"><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i></b></div>
+          <div class="hudcell"><span class="hudcell__label">HI-SCORE</span><b class="hudcell__val hudcell__val--hi" id="gHi">000000</b></div>
+        </div>
+
+        <div class="cabinet__screen">
+          <canvas id="game" width="960" height="540" tabindex="0" aria-label="SKYBREAKER — playable demo. Move with the mouse or arrow keys."></canvas>
+          <div class="game-overlay" id="gameOverlay">
+            <div class="ov">
+              <p class="ov__kicker">SKYBREAKER &mdash; DEMO 0.9.1</p>
+              <h3 class="ov__title">READY?</h3>
+              <p class="ov__sub">Fly with <kbd>MOUSE</kbd> or <kbd>&larr;&uarr;&darr;&rarr;</kbd>. Guns fire themselves. Don't hit the rocks.</p>
+              <button class="btn btn--primary btn--lg" data-action="start">&#9654;&nbsp; START MISSION</button>
+              <p class="ov__foot">3 lives &middot; 1 high score &middot; 0 excuses</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cabinet__foot">
+          <p class="controls"><span>MOVE</span> <kbd>MOUSE</kbd>/<kbd>ARROWS</kbd> <span>FIRE</span> <kbd>AUTO</kbd> <span>PAUSE</span> <kbd>P</kbd></p>
+          <div class="cabinet__btns">
+            <button class="btn btn--ghost btn--sm" id="pauseBtn" data-action="pause">&#10074;&#10074; PAUSE</button>
+          </div>
+        </div>
+      </div>
+      <p class="arcade__note reveal">High score is saved on this device. Can't reach it? Skill issue. <span class="dim">&mdash; the dev team, probably</span></p>
+    </section>
+
+    <!-- ============ GUILD ============ -->
+    <section class="section guild" id="guild">
+      <header class="sec-head reveal">
+        <p class="kicker">CHARACTER SELECT</p>
+        <h2 class="sec-title">THE GUILD</h2>
+        <p class="sec-sub">Four seats at this table. One is taken. The rest are waiting for their player.</p>
+      </header>
+
+      <div class="guild__grid">
+        <article class="gcard gcard--player reveal">
+          <p class="gcard__tag">PLAYER 1</p>
+          <div class="gcard__crest">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 L28 12 L24 20 L20 12 Z" fill="none" stroke="#2ee6ff" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 20 V42" stroke="#2ee6ff" stroke-width="3"/><path d="M16 28 H32" stroke="#ff3d9a" stroke-width="3"/><path d="M20 44 L24 40 L28 44" fill="none" stroke="#ff3d9a" stroke-width="2.5"/></svg>
+          </div>
+          <h3 class="gcard__name">KONSTANTINOS K.</h3>
+          <p class="gcard__class">FOUNDER &middot; GAME DIRECTOR</p>
+          <p class="gcard__quote">&ldquo;If it isn't fun in thirty seconds, it isn't fun yet.&rdquo;</p>
+          <div class="gcard__stats">
+            <div class="stat"><span>VISION</span><i class="stat__bar"><b style="width:100%"></b></i></div>
+            <div class="stat"><span>SHIPPING</span><i class="stat__bar"><b style="width:90%"></b></i></div>
+            <div class="stat"><span>CAFFEINE</span><i class="stat__bar"><b style="width:100%"></b></i></div>
+          </div>
+          <p class="gcard__foot">STATUS <b class="ok">&#9679; ACTIVE</b></p>
+        </article>
+
+        <article class="gcard gcard--locked reveal">
+          <p class="gcard__tag">SLOT LOCKED</p>
+          <div class="gcard__crest">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="13" fill="none" stroke="#8d97c0" stroke-width="2.5"/><path d="M24 3 V11 M24 37 V45 M3 24 H11 M37 24 H45" stroke="#8d97c0" stroke-width="2.5"/><circle cx="24" cy="24" r="3" fill="#2ee6ff"/></svg>
+          </div>
+          <h3 class="gcard__name">SENIOR GAMEPLAY ENGINEER</h3>
+          <p class="gcard__class">CLASS: SYSTEMS WIZARD</p>
+          <p class="gcard__quote">Wanted: someone who dreams in entity-component systems and fixes framerate for fun.</p>
+          <ul class="gcard__chips"><li>C++</li><li>UE5</li><li>PHYSICS</li></ul>
+          <p class="gcard__foot">REQUIRES <b class="locked">&#9632; NOT FOUND</b></p>
+        </article>
+
+        <article class="gcard gcard--locked reveal">
+          <p class="gcard__tag">SLOT LOCKED</p>
+          <div class="gcard__crest">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 L24 8 L40 40 Z" fill="none" stroke="#8d97c0" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 20 V32" stroke="#ffc63d" stroke-width="2.5"/><circle cx="24" cy="36" r="1.6" fill="#ffc63d"/></svg>
+          </div>
+          <h3 class="gcard__name">TECH ARTIST</h3>
+          <p class="gcard__class">CLASS: LIGHT BENDER</p>
+          <p class="gcard__quote">Turn 60 FPS into 600. Make the neon bleed. Break shaders, then apologise to the GPU.</p>
+          <ul class="gcard__chips"><li>SHADERS</li><li>VFX</li><li>OPTIMISATION</li></ul>
+          <p class="gcard__foot">REQUIRES <b class="locked">&#9632; NOT FOUND</b></p>
+        </article>
+
+        <article class="gcard gcard--locked reveal">
+          <p class="gcard__tag">SLOT LOCKED</p>
+          <div class="gcard__crest">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24 H10 M14 16 V32 M20 10 V38 M26 14 V34 M32 20 V28 M38 23 V25" stroke="#8d97c0" stroke-width="2.5"/><path d="M18 10 V38" stroke="#6bff9e" stroke-width="2.5"/></svg>
+          </div>
+          <h3 class="gcard__name">SOUND DESIGNER</h3>
+          <p class="gcard__class">CLASS: BASS CLERIC</p>
+          <p class="gcard__quote">Your job: make the explosions feel like they owe the player money.</p>
+          <ul class="gcard__chips"><li>FMOD</li><li>CHIPTUNE</li><li>MIX</li></ul>
+          <p class="gcard__foot">REQUIRES <b class="locked">&#9632; NOT FOUND</b></p>
+        </article>
+      </div>
+      <p class="guild__cta reveal"><a class="btn btn--ghost" href="#join">LOOKING FOR A SEAT? &rarr; ENLIST</a></p>
+    </section>
+
+    <!-- ============ JOIN ============ -->
+    <section class="section join" id="join">
+      <div class="join__grid">
+        <div class="join__copy reveal">
+          <p class="kicker">CO-OP MODE</p>
+          <h2 class="sec-title">JOIN THE PARTY</h2>
+          <p class="sec-sub">Playtests, early builds, and devlog transmissions &mdash; straight to your inbox before anyone else gets a turn. No spam. No paywalls. Just games.</p>
+          <ul class="join__perks">
+            <li>&#9733; Early playtest builds</li>
+            <li>&#9733; Behind-the-scenes devlogs</li>
+            <li>&#9733; First dibs on the SKYBREAKER soundtrack</li>
+          </ul>
+        </div>
+        <form class="join__form reveal" id="joinForm" novalidate>
+          <label class="join__label" for="emailInput">PLAYER TAG (EMAIL)</label>
+          <div class="join__console">
+            <span class="join__prompt">&gt;</span>
+            <input id="emailInput" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button class="btn btn--primary btn--sm" type="submit">ENLIST&nbsp;&#9654;</button>
+          </div>
+          <p class="join__msg" id="joinMsg" role="status"></p>
+          <div class="join__socials">
+            <button class="btn btn--ghost btn--sm social-btn" data-placeholder="social" data-net="DISCORD">DISCORD <em>SOON</em></button>
+            <button class="btn btn--ghost btn--sm social-btn" data-placeholder="social" data-net="X">X <em>SOON</em></button>
+            <button class="btn btn--ghost btn--sm social-btn" data-placeholder="social" data-net="YOUTUBE">YOUTUBE <em>SOON</em></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__brand">
+        <svg class="footer__mark" viewBox="0 0 128 128" aria-hidden="true"><use href="#gz-mark"/></svg>
+        <p class="footer__word">GAZUDIAN <span>GAMES</span></p>
+      </div>
+      <p class="footer__tag">Worlds worth playing. Since 2026.</p>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#worlds">WORLDS</a><a href="#arcade">ARCADE</a><a href="#guild">GUILD</a><a href="#join">JOIN</a>
+      </nav>
+      <p class="footer__fine">&copy; 2026 Gazudian Games. All rights reserved. <span class="dim">v1.0.0 &middot; built with &#9829; &amp; caffeine</span></p>
+      <p class="footer__insert">INSERT COIN TO CONTINUE <span class="blink">&#9654;</span></p>
+    </footer>
+  </main>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<noscript><p style="position:fixed;inset:auto 0 0 0;background:#ff3d9a;color:#04050c;padding:10px;text-align:center;font-family:sans-serif;z-index:200">This site runs on JavaScript for the full arcade experience. Please enable it.</p></noscript>
+
+<script src="/js/audio.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/game.js"></script>
+</body>
+</html>

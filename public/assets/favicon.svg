@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Gazudian Games">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ee6ff"/>
+      <stop offset="1" stop-color="#ff3d9a"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="#06090f"/>
+  <g transform="translate(64 64) scale(0.86) translate(-64 -64)">
+    <path d="M64 6 L114.2 35 L114.2 93 L64 122 L13.8 93 L13.8 35 Z"
+          fill="rgba(6,9,20,.92)" stroke="url(#lg)" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M81.4 43.3 A27 27 0 1 0 81.4 84.7 L81.4 64 L64 64"
+          fill="none" stroke="#e9efff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
