@@ -4,6 +4,11 @@ Interactive arcade-style studio site with a fully playable in-browser demo game 
 
 Zero dependencies. One tiny static server. Deploys to Railway as-is.
 
+## Live
+
+- **Production:** https://gazudian-games-production-842e.up.railway.app
+- **Repo:** https://github.com/KKaramaligkas/gazudian-games (pushes to `main` auto-deploy)
+
 ## Run locally
 
 ```bash
