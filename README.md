@@ -7,7 +7,9 @@ Zero dependencies. One tiny static server. Deploys to Railway as-is.
 ## Live
 
 - **Production:** https://gazudian-games-production-842e.up.railway.app
-- **Repo:** https://github.com/KKaramaligkas/gazudian-games (pushes to `main` auto-deploy)
+- **Repo:** https://github.com/KKaramaligkas/gazudian-games
+
+New commits deploy automatically once the Railway GitHub app is connected to this repo (Railway Dashboard → Project → Settings → Connect Repo). Until then, redeploy from the dashboard or re-run the source connection.
 
 ## Run locally
 
